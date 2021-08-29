@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Models
 {
-    public class KoreanbotsGenericResponse
+    [Obsolete]
+    public class KoreanbotsSearchResponse
     {
-        public int ResponseCode = 200;
         public int TotalPage = 1;
         public IReadOnlyList<KoreanbotsBotModel> Result = null;
     }

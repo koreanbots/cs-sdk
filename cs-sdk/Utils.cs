@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using cs_sdk.Exceptions;
 using cs_sdk.Models;
+using RestSharp;
 
 namespace cs_sdk
 {
     public static class Utils
     {
-        public static KoreanbotsCategory StringToCateGoryEnum(string value)
+        public static KoreanbotsCategory StringToCategoryEnum(string value)
         {
             switch (value)
             {
@@ -57,6 +60,16 @@ namespace cs_sdk
                     return KoreanbotsCategory.Minecraft;
                 default:
                     return KoreanbotsCategory.Unknown;
+            }
+        }
+
+        public static void CheckHttpException(IRestResponse response, bool ignoreNotFound = false)
+        {
+            if (ignoreNotFound && response.StatusCode == HttpStatusCode.NotFound) return;
+            if (!response.IsSuccessful || response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new KoreanbotsHttpException(
+                    $"The server responded with error {(int)response.StatusCode} {response.StatusCode}");
             }
         }
     }
