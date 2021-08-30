@@ -63,8 +63,9 @@ namespace cs_sdk
             }
         }
 
-        public static void CheckHttpException(IRestResponse response, bool ignoreNotFound = false)
+        public static void CheckHttpException(IRestResponse response, bool ignoreNotFound = false, bool ignoreTooMany = false)
         {
+            if (ignoreTooMany && response.StatusCode == HttpStatusCode.TooManyRequests) return;
             if (ignoreNotFound && response.StatusCode == HttpStatusCode.NotFound) return;
             if (!response.IsSuccessful || response.StatusCode != HttpStatusCode.OK)
             {

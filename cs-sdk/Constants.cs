@@ -14,5 +14,6 @@ namespace cs_sdk
         public static string V2BOTLISTVOTE = "/list/bots/votes";
         public static string V2BOTLISTNEW = "/list/bots/new";
         public static string V2USERVOTE = "/bots/{0}/vote";
+        public static string V2BOTUPDATE = "/bots/{0}/stats";
     }
 }

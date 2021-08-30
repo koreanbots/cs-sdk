@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using cs_sdk.Builder;
 using cs_sdk.Exceptions;
 using cs_sdk.Models;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace cs_sdk
@@ -97,6 +98,23 @@ namespace cs_sdk
 
             KoreanbotsBotBuilder builder = new KoreanbotsBotBuilder();
             return builder.BuildVoteModel(response.Content);
+        }
+
+        public async Task<KoreanbotsDefaultResponse> UpdateBotAsync(ulong botId, KoreanbotsUpdateModel data)
+        {
+            RestClient client = new RestClient(BaseUrl);
+            RestRequest request = new RestRequest(string.Format(Constants.V2BOTUPDATE, botId), Method.POST);
+            request.AddHeader("Authorization", Koreanbots.Token);
+            request.AddParameter("shards", data.Shards);
+            request.AddParameter("servers", data.Servers);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            IRestResponse response = await client.ExecuteAsync(request);
+
+            Utils.CheckHttpException(response, ignoreTooMany:true);
+
+            KoreanbotsBuilder builder = new KoreanbotsBuilder();
+            return builder.BuildResponse(response.Content);
         }
     }
 }

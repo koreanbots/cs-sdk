@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
+using cs_sdk.Models;
 
 namespace cs_sdk_tests
 {
@@ -151,15 +152,35 @@ namespace cs_sdk_tests
             Assert.Pass();
         }
 
+        public string Token =
+            "SUPER_SECRET";
         [Test]
         public async Task BotCheckVoteTest()
         {
-            Koreanbots.Token =
-                "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNjM4NjA4Nzk3MDQ3MTk2OCIsImlhdCI6MTYzMDExNjUxM30.b6naW7DSoLrXM5TE7Vy3IzLxoh2UqbxcH6R3ej7UUVYDtbo-qHOedWFNOzXRfyrWkFJ9TNJOJVwkZpgXP5BsSb-vXogbsAoQ_wNUgnrLKT_cJac2YBfLcyqiXSwQ7Q-h7EfsJpo_bnTQvoqEIROXjUHsCgpUKIE0Wxbn22CWo5Q";
+            Koreanbots.Token = Token;
             Console.WriteLine("Requesting Check Vote");
             var d = await req.CheckVoteAsync(706386087970471968, 642619628375375882);
             Console.WriteLine(JsonConvert.SerializeObject(d));
             d = await req.CheckVoteAsync(706386087970471968, 1);
+            Console.WriteLine(JsonConvert.SerializeObject(d));
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task BotUpdateInfoTest()
+        {
+            Koreanbots.Token = Token;
+            Console.WriteLine("Requesting Update Info");
+            var m = new KoreanbotsUpdateModel(1,1);
+            
+            var d = await req.UpdateBotAsync(706386087970471968, m);
+            Console.WriteLine(JsonConvert.SerializeObject(d));
+            //
+            d = await req.UpdateBotAsync(706386087970471968, m);
+            d = await req.UpdateBotAsync(706386087970471968, m);
+            d = await req.UpdateBotAsync(706386087970471968, m);
+
             Console.WriteLine(JsonConvert.SerializeObject(d));
 
             Assert.Pass();
