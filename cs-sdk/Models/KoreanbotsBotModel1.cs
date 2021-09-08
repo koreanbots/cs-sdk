@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace cs_sdk.Models
 {
@@ -22,6 +23,7 @@ namespace cs_sdk.Models
         /// <summary>
         /// 봇의 디스코드 태그를 반환합니다.
         /// </summary>
+        [JsonProperty("tag")]
         public string Discriminator { get; set; }
 
         ///<returns>아바타가 설정되지 않은 경우, null을 반환합니다.</returns>

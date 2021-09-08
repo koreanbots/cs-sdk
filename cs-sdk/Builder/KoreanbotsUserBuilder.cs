@@ -11,12 +11,14 @@ namespace cs_sdk.Builder
 {
     public class KoreanbotsUserBuilder
     {
-        public KoreanbotsUserModel BuildModel(string resjson)
+        public static KoreanbotsUserModel BuildModel(string resjson)
         {
             var obj = JObject.Parse(resjson);
             obj = (JObject)obj["data"];
-            var retmodel = obj.ToObject<KoreanbotsUserModel>(JsonSerializer.CreateDefault());
-
+            JsonSerializer se = JsonSerializer.CreateDefault();
+            se.NullValueHandling = NullValueHandling.Ignore;
+            var retmodel = obj.ToObject<KoreanbotsUserModel>(se);
+            
             return retmodel;
         }
     }

@@ -34,9 +34,7 @@ namespace cs_sdk
             
             Utils.CheckHttpException(response);
 
-            KoreanbotsBotBuilder builder = new KoreanbotsBotBuilder();
-            KoreanbotsBotModel model = builder.BuildModel(response.Content);
-            return model;
+            return KoreanbotsBotBuilder.BuildModel(response.Content);
         }
 
         public async Task<IReadOnlyCollection<KoreanbotsBotModel>> SearchBotByIdAsync(string query, int page = 1)
@@ -59,8 +57,7 @@ namespace cs_sdk
                 return new ReadOnlyCollection<KoreanbotsBotModel>(new List<KoreanbotsBotModel>());
             }
 
-            KoreanbotsBotBuilder builder = new KoreanbotsBotBuilder();
-            return builder.BuildListModels(response.Content);
+            return KoreanbotsBotBuilder.BuildListModels(response.Content);
         }
 
         public async Task<IReadOnlyCollection<KoreanbotsBotModel>> GetBotsByNewAsync()
@@ -70,8 +67,7 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response);
             
-            KoreanbotsBotBuilder builder = new KoreanbotsBotBuilder();
-            return builder.BuildListModels(response.Content);
+            return KoreanbotsBotBuilder.BuildListModels(response.Content);
         }
 
         public async Task<IReadOnlyCollection<KoreanbotsBotModel>> GetBotsByVotedAsync()
@@ -82,8 +78,7 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response);
 
-            KoreanbotsBotBuilder builder = new KoreanbotsBotBuilder();
-            return builder.BuildListModels(response.Content);
+            return KoreanbotsBotBuilder.BuildListModels(response.Content);
         }
 
         public async Task<KoreanbotsUserVote> CheckVoteAsync(ulong botId, ulong userId)
@@ -96,8 +91,7 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response);
 
-            KoreanbotsBotBuilder builder = new KoreanbotsBotBuilder();
-            return builder.BuildVoteModel(response.Content);
+            return KoreanbotsBotBuilder.BuildVoteModel(response.Content);
         }
 
         public async Task<KoreanbotsDefaultResponse> UpdateBotAsync(ulong botId, KoreanbotsUpdateModel data)
@@ -113,8 +107,19 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response, ignoreTooMany:true);
 
-            KoreanbotsBuilder builder = new KoreanbotsBuilder();
-            return builder.BuildResponse(response.Content);
+            return KoreanbotsBuilder.BuildResponse(response.Content);
+        }
+
+        public async Task<KoreanbotsUserModel> RequestUserByIdAsync(ulong userid)
+        {
+            RestClient client = new RestClient(BaseUrl);
+            RestRequest request = new RestRequest(string.Format(Constants.V2USERBYID, userid), Method.GET);
+
+            IRestResponse response = await client.ExecuteAsync(request);
+
+            Utils.CheckHttpException(response);
+
+            return KoreanbotsUserBuilder.BuildModel(response.Content);
         }
     }
 }

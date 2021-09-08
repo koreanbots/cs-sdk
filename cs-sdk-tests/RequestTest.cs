@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using cs_sdk.Models;
 
@@ -21,6 +22,7 @@ namespace cs_sdk_tests
         {
             Console.WriteLine("Requesting bot using id 387548561816027138");
             var model = await req.RequestBotByIdAsync(387548561816027138);
+            Console.WriteLine(model.Owners.FirstOrDefault().Flags.ToString());
             Console.WriteLine(JsonConvert.SerializeObject(model));
             Assert.Pass();
         }
@@ -153,7 +155,7 @@ namespace cs_sdk_tests
         }
 
         public string Token =
-            "SUPER_SECRET";
+            "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjcwNjM4NjA4Nzk3MDQ3MTk2OCIsImlhdCI6MTYzMDI4MDc1NX0.REL1kumC7wqMBZHAc6oY_a5Kz-mpXOECwOJStiH1rAXE0dQ4yWz6fTzcTww_xRPqJxZISfaS09KsrGm_QuArFrTHetrctz05XwcYmAiezPF2dSnftv9aI8DNHP4u1ZxdeUciU51KwXAc5mqhf2F_XsdjbAoOFp5zNTYn30nZUiw";
         [Test]
         public async Task BotCheckVoteTest()
         {
@@ -183,6 +185,15 @@ namespace cs_sdk_tests
 
             Console.WriteLine(JsonConvert.SerializeObject(d));
 
+            Assert.Pass();
+        }
+
+        [Test]
+        public async Task UserByIdRequestTest()
+        {
+            Console.WriteLine("Requesting user using id 642619628375375882");
+            var model = await req.RequestUserByIdAsync(642619628375375882);
+            Console.WriteLine(JsonConvert.SerializeObject(model));
             Assert.Pass();
         }
     }

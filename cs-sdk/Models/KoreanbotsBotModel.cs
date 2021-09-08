@@ -35,7 +35,7 @@ namespace cs_sdk.Models
         /// <summary>
         /// 봇의 소유자 목록을 반환합니다. (소유한 봇은 아이디만 표시됩니다.)
         /// </summary>
-        public List<KoreanbotsUserModel1> Owners = new ();
+        public List<KoreanbotsUserModel1> Owners { get; } = new ();
 
         /// <summary>
         /// 봇의 플래그를 반환합니다.

@@ -11,7 +11,7 @@ namespace cs_sdk.Builder
 {
     class KoreanbotsBuilder
     {
-        public KoreanbotsDefaultResponse BuildResponse(string resjson)
+        public static KoreanbotsDefaultResponse BuildResponse(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;

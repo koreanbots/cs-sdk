@@ -9,7 +9,7 @@ namespace cs_sdk.Builder
 {
     public class KoreanbotsBotBuilder
     {
-        public KoreanbotsBotModel BuildModel(string resjson)
+        public static KoreanbotsBotModel BuildModel(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;
@@ -22,7 +22,7 @@ namespace cs_sdk.Builder
             return retmodel;
         }
 
-        public IReadOnlyCollection<KoreanbotsBotModel> BuildListModels(string resjson)
+        public static IReadOnlyCollection<KoreanbotsBotModel> BuildListModels(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;
@@ -35,7 +35,7 @@ namespace cs_sdk.Builder
             return models;
         }
 
-        public KoreanbotsUserVote BuildVoteModel(string resjson)
+        public static KoreanbotsUserVote BuildVoteModel(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;

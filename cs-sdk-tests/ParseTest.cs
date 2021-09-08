@@ -36,9 +36,8 @@ namespace cs_sdk_tests
         [Test]
         public void DeserializeTest()
         {
-            var builder = new KoreanbotsBotBuilder();
             Console.WriteLine("Deserializing Json to KBM");
-            kbm = builder.BuildModel(BotJson);
+            kbm = KoreanbotsBotBuilder.BuildModel(BotJson);
             Console.WriteLine(JsonConvert.SerializeObject(kbm));
             //Console.WriteLine("Deserializing Json KUM");
             //JsonConvert.DeserializeObject(kum);
