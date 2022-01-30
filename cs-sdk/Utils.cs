@@ -12,54 +12,54 @@ namespace cs_sdk
 {
     public static class Utils
     {
-        public static KoreanbotsCategory StringToCategoryEnum(string value)
+        public static KoreanBotsCategory StringToCategoryEnum(string value)
         {
             switch (value)
             {
                 case "관리":
-                    return KoreanbotsCategory.Moderation;
+                    return KoreanBotsCategory.Moderation;
                 case "뮤직":
-                    return KoreanbotsCategory.Music;
+                    return KoreanBotsCategory.Music;
                 case "전적":
-                    return KoreanbotsCategory.History;
+                    return KoreanBotsCategory.History;
                 case "게임":
-                    return KoreanbotsCategory.Game;
+                    return KoreanBotsCategory.Game;
                 case "도박":
-                    return KoreanbotsCategory.Gambling;
+                    return KoreanBotsCategory.Gambling;
                 case "로깅":
-                    return KoreanbotsCategory.Logging;
+                    return KoreanBotsCategory.Logging;
                 case "빗금 명령어":
-                    return KoreanbotsCategory.SlashCommand;
+                    return KoreanBotsCategory.SlashCommand;
                 case "웹 대시보드":
-                    return KoreanbotsCategory.WebDashboard;
+                    return KoreanBotsCategory.WebDashboard;
                 case "밈":
-                    return KoreanbotsCategory.Meme;
+                    return KoreanBotsCategory.Meme;
                 case "레벨링":
-                    return KoreanbotsCategory.Leveling;
+                    return KoreanBotsCategory.Leveling;
                 case "유틸리티":
-                    return KoreanbotsCategory.Utility;
+                    return KoreanBotsCategory.Utility;
                 case "대화":
-                    return KoreanbotsCategory.Conversation;
+                    return KoreanBotsCategory.Conversation;
                 case "NSFW":
-                    return KoreanbotsCategory.NSFW;
+                    return KoreanBotsCategory.NSFW;
                 case "검색":
-                    return KoreanbotsCategory.Search;
+                    return KoreanBotsCategory.Search;
                 case "학교":
-                    return KoreanbotsCategory.School;
+                    return KoreanBotsCategory.School;
                 case "코로나19":
-                    return KoreanbotsCategory.Covid19;
+                    return KoreanBotsCategory.Covid19;
                 case "번역":
-                    return KoreanbotsCategory.Translate;
+                    return KoreanBotsCategory.Translate;
                 case "오버워치":
-                    return KoreanbotsCategory.Overwatch;
+                    return KoreanBotsCategory.Overwatch;
                 case "리그 오브 레전드":
-                    return KoreanbotsCategory.LeagueofLegends;
+                    return KoreanBotsCategory.LeagueofLegends;
                 case "배틀그라운드":
-                    return KoreanbotsCategory.PUBG;
+                    return KoreanBotsCategory.PUBG;
                 case "마인크래프트":
-                    return KoreanbotsCategory.Minecraft;
+                    return KoreanBotsCategory.Minecraft;
                 default:
-                    return KoreanbotsCategory.Unknown;
+                    return KoreanBotsCategory.Unknown;
             }
         }
 
@@ -69,7 +69,7 @@ namespace cs_sdk
             if (ignoreNotFound && response.StatusCode == HttpStatusCode.NotFound) return;
             if (!response.IsSuccessful || response.StatusCode != HttpStatusCode.OK)
             {
-                throw new KoreanbotsHttpException(
+                throw new KoreanBotsHttpException(
                     $"The server responded with error {(int)response.StatusCode} {response.StatusCode}");
             }
         }

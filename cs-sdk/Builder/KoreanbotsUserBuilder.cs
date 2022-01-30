@@ -9,15 +9,15 @@ using Newtonsoft.Json.Linq;
 
 namespace cs_sdk.Builder
 {
-    public class KoreanbotsUserBuilder
+    public class KoreanBotsUserBuilder
     {
-        public static KoreanbotsUserModel BuildModel(string resjson)
+        public static KoreanBotsUserModel BuildModel(string resjson)
         {
             var obj = JObject.Parse(resjson);
             obj = (JObject)obj["data"];
             JsonSerializer se = JsonSerializer.CreateDefault();
             se.NullValueHandling = NullValueHandling.Ignore;
-            var retmodel = obj.ToObject<KoreanbotsUserModel>(se);
+            var retmodel = obj.ToObject<KoreanBotsUserModel>(se);
             
             return retmodel;
         }

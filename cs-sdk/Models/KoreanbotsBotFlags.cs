@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Models
 {
-    public enum KoreanbotsBotFlags
+    [Flags]
+    public enum KoreanBotsBotFlags
     {
         None = 0,
         Official = 1 << 0,

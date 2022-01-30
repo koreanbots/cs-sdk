@@ -7,41 +7,41 @@ using Newtonsoft.Json.Linq;
 
 namespace cs_sdk.Builder
 {
-    public class KoreanbotsBotBuilder
+    public class KoreanBotsBotBuilder
     {
-        public static KoreanbotsBotModel BuildModel(string resjson)
+        public static KoreanBotsBotModel BuildModel(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;
             var obj = JObject.Parse(resjson);
             obj = (JObject)obj["data"];
-            var retmodel = obj.ToObject<KoreanbotsBotModel>(js);
+            var retmodel = obj.ToObject<KoreanBotsBotModel>(js);
 
             foreach (string s in obj["category"]) retmodel.Categories.Add(Utils.StringToCategoryEnum(s));
 
             return retmodel;
         }
 
-        public static IReadOnlyCollection<KoreanbotsBotModel> BuildListModels(string resjson)
+        public static IReadOnlyCollection<KoreanBotsBotModel> BuildListModels(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;
             var obj = JObject.Parse(resjson);
             var arr = (JArray)obj["data"]["data"];
-            List<KoreanbotsBotModel> listm;
-            listm = arr.ToObject<List<KoreanbotsBotModel>>(js);
+            List<KoreanBotsBotModel> listm;
+            listm = arr.ToObject<List<KoreanBotsBotModel>>(js);
 
-            var models = new ReadOnlyCollection<KoreanbotsBotModel>(listm);
+            var models = new ReadOnlyCollection<KoreanBotsBotModel>(listm);
             return models;
         }
 
-        public static KoreanbotsUserVote BuildVoteModel(string resjson)
+        public static KoreanBotsUserVote BuildVoteModel(string resjson)
         {
             var js = JsonSerializer.CreateDefault();
             js.NullValueHandling = NullValueHandling.Ignore;
             var obj = JObject.Parse(resjson);
             obj = (JObject)obj["data"];
-            var retmodel = new KoreanbotsUserVote();
+            var retmodel = new KoreanBotsUserVote();
             retmodel.Voted = obj["voted"].Value<bool>();
             JToken dat;
             if (obj.TryGetValue("lastVote", out dat) && dat.Type != JTokenType.Null)

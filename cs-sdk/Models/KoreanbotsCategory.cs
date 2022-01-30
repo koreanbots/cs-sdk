@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Models
 {
-    public enum KoreanbotsCategory
+    public enum KoreanBotsCategory
     {
         /// <summary>
         /// 알수없음

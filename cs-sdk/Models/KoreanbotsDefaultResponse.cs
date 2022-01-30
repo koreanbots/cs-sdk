@@ -8,14 +8,14 @@ using Newtonsoft.Json;
 
 namespace cs_sdk.Models
 {
-    public class KoreanbotsDefaultResponse
+    public class KoreanBotsDefaultResponse
     {
         [JsonProperty("code")]
         public int Code { get; }
         [JsonProperty("message")]
         public string Message { get;}
         public bool IsSuccessful { get; } = true;
-        public KoreanbotsDefaultResponse(int _code = 200, string _message = null)
+        public KoreanBotsDefaultResponse(int _code = 200, string _message = null)
         {
             Code = _code;
             Message = _message;

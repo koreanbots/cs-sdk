@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace cs_sdk.Models
 {
-    public class KoreanbotsUserVote
+    public class KoreanBotsUserVote
     {
         /// <summary>
         /// 12시간이내 투표 여부를 반환합니다.

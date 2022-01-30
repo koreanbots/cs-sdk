@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Models
 {
-    public enum KoreanbotsBotStatus
+    public enum KoreanBotsBotStatus
     {
         Offline = 0,
         Online = 1,

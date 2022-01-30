@@ -10,15 +10,15 @@ namespace cs_sdk_tests
     public class ParseTest
     {
         private string BotJson;
-        private KoreanbotsBotModel kbm;
-        private KoreanbotsUserModel kum;
+        private KoreanBotsBotModel kbm;
+        private KoreanBotsUserModel kum;
 
         [SetUp]
         public void Setup()
         {
             var wc = new WebClient();
-            kbm = new KoreanbotsBotModel();
-            kum = new KoreanbotsUserModel();
+            kbm = new KoreanBotsBotModel();
+            kum = new KoreanBotsUserModel();
             BotJson = wc.DownloadString(
                 "https://cdn.discordapp.com/attachments/745844596176715806/860681532535996466/test.json");
         }
@@ -37,7 +37,7 @@ namespace cs_sdk_tests
         public void DeserializeTest()
         {
             Console.WriteLine("Deserializing Json to KBM");
-            kbm = KoreanbotsBotBuilder.BuildModel(BotJson);
+            kbm = KoreanBotsBotBuilder.BuildModel(BotJson);
             Console.WriteLine(JsonConvert.SerializeObject(kbm));
             //Console.WriteLine("Deserializing Json KUM");
             //JsonConvert.DeserializeObject(kum);

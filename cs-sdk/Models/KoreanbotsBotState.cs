@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Models
 {
-    public enum KoreanbotsBotState
+    public enum KoreanBotsBotState
     {
         /// <summary>
         /// 정상

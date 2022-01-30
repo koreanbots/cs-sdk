@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace cs_sdk.Models
 {
-    public class KoreanbotsBotModel1
+    public class KoreanBotsBotModel1
     {
         /// <summary>
         /// 봇의 ID를 반환합니다.
@@ -38,7 +39,7 @@ namespace cs_sdk.Models
         /// <summary>
         /// 봇의 플래그를 반환합니다.
         /// </summary>
-        /// <see cref="KoreanbotsBotFlags"/>
+        /// <see cref="KoreanBotsBotFlags"/>
         public int Flags = 0;
         
         /// <summary>
@@ -90,30 +91,30 @@ namespace cs_sdk.Models
         /// <summary>
         /// 봇의 카테고리를 반환합니다.
         /// </summary>
-        public List<KoreanbotsCategory> Categories { get; set; } = new();
+        public List<KoreanBotsCategory> Categories { get; set; } = new();
         
         /// <summary>봇의 Vanity주소를 반환합니다. 만x약 설정되지 않은 경우, null을 반환합니다.</summary>
         /// <returns>Vanity주소가 설정되지 않은 경우, null을 반환합니다.</returns>
-        /// <seealso cref="https://koreanbots.dev/verification"/>
+        /// <seealso cref="https://KoreanBots.dev/verification"/>
         public string Vanity { get; set; } = null;
         
         /// <summary>봇의 배경이미지 주소를 반환합니다. 만약 설정되지 않은 경우, null을 반환합니다.</summary>
         /// <returns>배경 이미지 주소가 설정되지 않은 경우, null을 반환합니다.</returns>
-        /// <seealso cref="https://koreanbots.dev/verification"/>
+        /// <seealso cref="https://KoreanBots.dev/verification"/>
         public string Bg { get; set; } = null;
         
         /// <summary>봇의 배너 이미지 주소를 반환합니다. 만약 설정되지 않은 경우, null을 반환합니다.</summary>
         /// <returns>배너 이미지 주소가 설정되지 않은 경우, null을 반환합니다.</returns>
-        /// <seealso cref="https://koreanbots.dev/verification"/>
+        /// <seealso cref="https://KoreanBots.dev/verification"/>
         public string Banner { get; set; } = null;
         
         /// <summary>봇의 유저 상태를 반환합니다. 만약 설정되지 않은 경우, Unknown을 반환합니다.</summary>
         /// <returns>상태가 설정되지 않은 경우, Unknown을 반환합니다.</returns>
-        public KoreanbotsBotStatus Status { get; set; } = KoreanbotsBotStatus.Unknown;
+        public KoreanBotsBotStatus Status { get; set; } = KoreanBotsBotStatus.Unknown;
 
         /// <summary>
         /// DBKR에서의 봇의 상태를 반환합니다.
         /// </summary>
-        public KoreanbotsBotState State { get; set; }
+        public KoreanBotsBotState State { get; set; }
     }
 }

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Exceptions
 {
-    class KoreanbotsSearchException : Exception
+    class KoreanBotsSearchException : Exception
     {
-        public KoreanbotsSearchException(string message) : base(message){}
+        public KoreanBotsSearchException(string message) : base(message){}
     }
 }

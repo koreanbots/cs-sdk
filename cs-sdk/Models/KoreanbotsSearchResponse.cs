@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 namespace cs_sdk.Models
 {
     [Obsolete]
-    public class KoreanbotsSearchResponse
+    public class KoreanBotsSearchResponse
     {
         public int TotalPage = 1;
-        public IReadOnlyList<KoreanbotsBotModel> Result = null;
+        public IReadOnlyList<KoreanBotsBotModel> Result = null;
     }
 }

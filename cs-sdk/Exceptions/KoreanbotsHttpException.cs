@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace cs_sdk.Exceptions
 {
-    class KoreanbotsHttpException : Exception
+    class KoreanBotsHttpException : Exception
     {
-        public KoreanbotsHttpException(string message) : base(message){}
+        public KoreanBotsHttpException(string message) : base(message){}
     }
 }

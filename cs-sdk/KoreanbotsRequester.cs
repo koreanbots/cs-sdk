@@ -13,20 +13,23 @@ using RestSharp;
 
 namespace cs_sdk
 {
-    public class KoreanbotsRequester
+    public class KoreanBotsRequester
     {
         public string BaseUrl { get; set; } = Constants.APIV2;
-
+        private string Token { get; set; }
         /// <summary>
-        /// _b가 설정되지 않으면 기본 URL을 사용합니다.
+        /// _b가 설정되지 않으면 기본 URL을 사용합니다. 
         /// </summary>
-        /// <param name="baseurl"></param>
-        public KoreanbotsRequester(string _b= null)
+        /// <param name="_b">API BaseUrl</param>
+        /// <param name="_t" > API Token</param>
+        
+        public KoreanBotsRequester(string _b= null, string _t = null)
         {
             if (_b != null) BaseUrl = _b;
+            if (_t != null) Token = _t;
         }
 
-        public async Task<KoreanbotsBotModel> RequestBotByIdAsync(ulong id)
+        internal async Task<KoreanBotsBotModel> RequestBotByIdAsync(ulong id)
         {
             RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(string.Format(Constants.V2BOTBYID, id), Method.GET);
@@ -34,16 +37,11 @@ namespace cs_sdk
             
             Utils.CheckHttpException(response);
 
-            return KoreanbotsBotBuilder.BuildModel(response.Content);
+            return KoreanBotsBotBuilder.BuildModel(response.Content);
         }
 
-        public async Task<IReadOnlyCollection<KoreanbotsBotModel>> SearchBotByIdAsync(string query, int page = 1)
+        public async Task<IReadOnlyCollection<KoreanBotsBotModel>> SearchBotAsync(string query, int page = 1)
         {
-            if (string.IsNullOrEmpty(query) || string.IsNullOrWhiteSpace(query))
-            {
-                throw new KoreanbotsSearchException("Query cannot be null or whitespace");
-            }
-
             RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(Constants.V2BOTSEARCH, Method.GET);
             request.AddQueryParameter("query", query);
@@ -54,23 +52,23 @@ namespace cs_sdk
 
             if (response.StatusCode == HttpStatusCode.NotFound)
             {
-                return new ReadOnlyCollection<KoreanbotsBotModel>(new List<KoreanbotsBotModel>());
+                return new ReadOnlyCollection<KoreanBotsBotModel>(new List<KoreanBotsBotModel>());
             }
 
-            return KoreanbotsBotBuilder.BuildListModels(response.Content);
+            return KoreanBotsBotBuilder.BuildListModels(response.Content);
         }
 
-        public async Task<IReadOnlyCollection<KoreanbotsBotModel>> GetBotsByNewAsync()
+        public async Task<IReadOnlyCollection<KoreanBotsBotModel>> GetBotsByNewAsync()
         {   RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(Constants.V2BOTLISTNEW, Method.GET);
             IRestResponse response = await client.ExecuteAsync(request);
 
             Utils.CheckHttpException(response);
             
-            return KoreanbotsBotBuilder.BuildListModels(response.Content);
+            return KoreanBotsBotBuilder.BuildListModels(response.Content);
         }
 
-        public async Task<IReadOnlyCollection<KoreanbotsBotModel>> GetBotsByVotedAsync()
+        public async Task<IReadOnlyCollection<KoreanBotsBotModel>> GetBotsByVotedAsync()
         {
             RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(Constants.V2BOTLISTVOTE, Method.GET);
@@ -78,27 +76,27 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response);
 
-            return KoreanbotsBotBuilder.BuildListModels(response.Content);
+            return KoreanBotsBotBuilder.BuildListModels(response.Content);
         }
 
-        public async Task<KoreanbotsUserVote> CheckVoteAsync(ulong botId, ulong userId)
+        public async Task<KoreanBotsUserVote> CheckVoteAsync(ulong botId, ulong userId)
         {
             RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(string.Format(Constants.V2USERVOTE, botId), Method.GET);
-            request.AddHeader("Authorization", Koreanbots.Token);
+            request.AddHeader("Authorization", Token);
             request.AddQueryParameter("userID", userId.ToString());
             IRestResponse response = await client.ExecuteAsync(request);
 
             Utils.CheckHttpException(response);
 
-            return KoreanbotsBotBuilder.BuildVoteModel(response.Content);
+            return KoreanBotsBotBuilder.BuildVoteModel(response.Content);
         }
 
-        public async Task<KoreanbotsDefaultResponse> UpdateBotAsync(ulong botId, KoreanbotsUpdateModel data)
+        public async Task<KoreanBotsDefaultResponse> UpdateBotAsync(ulong botId, KoreanBotsUpdateModel data)
         {
             RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(string.Format(Constants.V2BOTUPDATE, botId), Method.POST);
-            request.AddHeader("Authorization", Koreanbots.Token);
+            request.AddHeader("Authorization", Token);
             request.AddParameter("shards", data.Shards);
             request.AddParameter("servers", data.Servers);
             request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -107,10 +105,10 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response, ignoreTooMany:true);
 
-            return KoreanbotsBuilder.BuildResponse(response.Content);
+            return KoreanBotsBuilder.BuildResponse(response.Content);
         }
 
-        public async Task<KoreanbotsUserModel> RequestUserByIdAsync(ulong userid)
+        public async Task<KoreanBotsUserModel> RequestUserByIdAsync(ulong userid)
         {
             RestClient client = new RestClient(BaseUrl);
             RestRequest request = new RestRequest(string.Format(Constants.V2USERBYID, userid), Method.GET);
@@ -119,7 +117,7 @@ namespace cs_sdk
 
             Utils.CheckHttpException(response);
 
-            return KoreanbotsUserBuilder.BuildModel(response.Content);
+            return KoreanBotsUserBuilder.BuildModel(response.Content);
         }
     }
 }

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace cs_sdk.Models
 {
-    public class KoreanbotsUserModel
+    public class KoreanBotsUserModel
     {
         /// <summary>
         /// 유저의 ID를 반환합니다.
@@ -34,12 +34,12 @@ namespace cs_sdk.Models
         /// <summary>
         /// 유저의 플래그를 반환합니다.
         /// </summary>
-        public KoreanbotsUserFlags Flags { get; set; } = KoreanbotsUserFlags.None;
+        public KoreanBotsUserFlags Flags { get; set; } = KoreanBotsUserFlags.None;
 
         /// <summary>
         /// 유저가 소유한 봇들을 반환합니다. (단, 소유자는 아이디만 표시됩니다.)
         /// </summary>
-        public List<KoreanbotsBotModel1> Bots { get; set; } = new();
+        public List<KoreanBotsBotModel1> Bots { get; set; } = new();
         
     }
 }
